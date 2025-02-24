@@ -7,10 +7,10 @@ POST http://localhost:3000/assets
 Content-Type: application/json
 
 {
-  "name": "Amazon",
-  "symbol": "A1",
+  "name": "Amazon1",
+  "symbol": "A11",
   "price": "100",
-  "image": "src/assets/assets.http"
+  "image": "amz.jpeg"
 }
 
 ### 
@@ -63,3 +63,34 @@ Content-Type: application/json
     "assetId": "{{assetId}}",
     "shares": 100
 }
+
+
+
+#ORDERS
+
+### Create a new ORDER
+
+# @name createOrder 
+
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+    "assetId": "{{assetId}}",
+    "walletId": "{{walletId}}",
+    "shares": 100,
+    "price": 100,
+    "type": "BUY"   
+}
+
+### 
+@orderId = {{ createOrder.response.body._id }}
+
+
+#### Get one orders by id
+GET http://localhost:3000/orders/665b87ae-ef28-4bbe-8c17-b892593a3feb
+Content-Type: application/json
+
+#### Get one order by id created now (use the id from the response of the POST request)
+GET http://localhost:3000/orders/{{orderId}}
+Content-Type: application/json
